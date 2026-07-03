@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flynn Macdonald — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #16120f;
+    --panel: #221b15;
+    --panel-line: #4a3c2c;
+    --bone: #d9c9a8;
+    --rust: #a3502a;
+    --rust-dim: #7a3c22;
+    --text: #e6dcc3;
+    --text-muted: #8f8371;
+    --display: 'Cinzel', serif;
+    --serif: 'Crimson Text', serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    line-height: 1.65;
+    position: relative;
+  }
+
+  /* subtle grain, generated in-browser, no image assets */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    z-index: 1;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 50% 0%, transparent 40%, rgba(0,0,0,0.35) 100%);
+    z-index: 1;
+  }
+
+  a { color: var(--rust); text-decoration: none; border-bottom: 1px solid var(--rust-dim); }
+  a:hover { color: var(--bone); border-bottom-color: var(--bone); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2; }
+
+  /* ---------- HERO ---------- */
+  header.hero {
+    padding: 5.5rem 0 3rem;
+    border-bottom: 1px solid var(--panel-line);
+    position: relative;
+  }
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--rust);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+  }
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2rem, 5.5vw, 2.8rem);
+    margin: 0.7rem 0 1rem;
+    letter-spacing: 0.03em;
+    color: var(--bone);
+    text-transform: uppercase;
+  }
+  .hero p {
+    color: var(--text-muted);
+    max-width: 50ch;
+    font-size: 1.15rem;
+  }
+
+  nav.toc {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.25rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  nav.toc a {
+    color: var(--text);
+    border-bottom: 1px solid var(--panel-line);
+    padding-bottom: 2px;
+  }
+  nav.toc a:hover { color: var(--rust); border-bottom-color: var(--rust); }
+
+  /* ---------- SECTIONS ---------- */
+  section.block {
+    padding: 3.75rem 0;
+    border-bottom: 1px solid var(--panel-line);
+  }
+  section.block:last-of-type { border-bottom: none; }
+
+  .block-header {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  .seal {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1.5px solid var(--rust-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    font-size: 0.95rem;
+    color: var(--rust);
+    flex-shrink: 0;
+    background: radial-gradient(circle at 35% 30%, rgba(163,80,42,0.12), transparent 70%);
+  }
+  .block-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    color: var(--bone);
+    text-transform: uppercase;
+  }
+  .block-count {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-left: auto;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .block-desc {
+    color: var(--text-muted);
+    font-size: 1.02rem;
+    margin: 0.9rem 0 1.85rem 3rem;
+    font-style: italic;
+  }
+
+  /* ---------- ITEMS ---------- */
+  .item {
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    padding: 1.5rem 1.6rem;
+    margin-bottom: 1.1rem;
+    position: relative;
+  }
+  .item::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--rust-dim);
+  }
+  .item:last-child { margin-bottom: 0; }
+  .item-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    color: var(--bone);
+    margin-bottom: 0.4rem;
+  }
+  .item-meta {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--rust);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
+  }
+  .item-body { color: var(--text-muted); font-size: 1.02rem; }
+  .item-body p { margin-bottom: 0.6rem; }
+  .item-body p:last-child { margin-bottom: 0; }
+
+  .item.placeholder::before { background: var(--panel-line); }
+  .item.placeholder {
+    border-style: dashed;
+    background: transparent;
+  }
+  .item.placeholder .item-title,
+  .item.placeholder .item-meta { color: var(--text-muted); }
+
+  footer {
+    padding: 3rem 0 4rem;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 600px) {
+    header.hero { padding: 4rem 0 2.5rem; }
+    nav.toc { flex-wrap: wrap; gap: 1rem 1.4rem; }
+    .block-desc { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ============================================================
+       HERO — edit freely, this is just your intro line.
+       ============================================================ -->
+  <header class="hero">
+    <div class="tag">Portfolio</div>
+    <h1>Flynn Macdonald</h1>
+    <p>
+      Writing, hardware projects, and everything else I've made time for.
+      Still adding to this as things come together.
+    </p>
+    <nav class="toc">
+      <a href="#writing">Writing</a>
+      <a href="#tech">Tech</a>
+      <a href="#other">Other</a>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       SECTION: WRITING
+       To add a piece: copy one <div class="item">...</div> block
+       and edit it. Delete the .placeholder item once you have
+       real work in this section.
+       ============================================================ -->
+  <section class="block" id="writing">
+    <div class="block-header">
+      <div class="seal">W</div>
+      <div class="block-title">Writing</div>
+      <div class="block-count">2 entries</div>
+    </div>
+    <p class="block-desc">Fiction and anything else written for its own sake.</p>
+
+    <div class="item">
+      <div class="item-title">Kenshi: The Drifter</div>
+      <div class="item-meta">Fiction — Novel — In progress</div>
+      <div class="item-body">
+        <p>
+          A novel following Rasshi and his companion Heri through a hostile,
+          imperial wasteland, building toward a deliberately tragic ending.
+        </p>
+        <p><a href="#">Read an excerpt →</a></p>
+      </div>
+    </div>
+
+    <div class="item placeholder">
+      <div class="item-title">Untitled — next piece</div>
+      <div class="item-meta">Placeholder</div>
+      <div class="item-body">
+        <p>Duplicate this card and swap in your next piece when it's ready.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION: TECH
+       Same pattern — copy an .item block per project.
+       ============================================================ -->
+  <section class="block" id="tech">
+    <div class="block-header">
+      <div class="seal">T</div>
+      <div class="block-title">Tech</div>
+      <div class="block-count">1 entry</div>
+    </div>
+    <p class="block-desc">Builds, fixes, and Linux projects worth writing down.</p>
+
+    <div class="item">
+      <div class="item-title">Linux Mint on the ASUS TUF Dash F15</div>
+      <div class="item-meta">Setup — Nvidia / Secure Boot / Cinnamon</div>
+      <div class="item-body">
+        <p>
+          Fresh Mint install with Nvidia and Secure Boot conflicts resolved,
+          Wallpaper Engine working under Cinnamon, and a custom boot splash
+          replacing the stock logo.
+        </p>
+      </div>
+    </div>
+
+    <div class="item placeholder">
+      <div class="item-title">Next build — TBD</div>
+      <div class="item-meta">Placeholder</div>
+      <div class="item-body">
+        <p>Could be the Windows 11 USB installer project, a hardware find, or whatever's next.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION: OTHER
+       Catch-all — reptile keeping, art, whatever doesn't fit above.
+       ============================================================ -->
+  <section class="block" id="other">
+    <div class="block-header">
+      <div class="seal">O</div>
+      <div class="block-title">Other</div>
+      <div class="block-count">Empty</div>
+    </div>
+    <p class="block-desc">Everything that doesn't fit neatly into the other two.</p>
+
+    <div class="item placeholder">
+      <div class="item-title">Nothing here yet</div>
+      <div class="item-meta">Placeholder</div>
+      <div class="item-body">
+        <p>Reptile keeping, art, whatever else — add it in when it exists.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ADDING A WHOLE NEW SECTION LATER:
+       1. Copy an entire <section class="block" id="..."> block
+       2. Change the id, seal letter, block-title, and block-desc
+       3. Add a matching <a href="#yourid">Label</a> in nav.toc above
+       ============================================================ -->
+
+  <footer>
+    Last updated manually, no CMS involved.
+  </footer>
+
+</div>
+
+</body>
+</html>
